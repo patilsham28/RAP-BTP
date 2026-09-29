@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Defination Of Travel'
+define service Y185SD_Travel {
+  expose y185C_Travel;
+}

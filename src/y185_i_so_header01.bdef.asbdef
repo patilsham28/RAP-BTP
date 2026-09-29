@@ -1,0 +1,59 @@
+managed implementation in class zbp_185_i_so_header01 unique;
+strict ( 2 );
+
+define behavior for y185_I_So_Header01 alias Header
+persistent table y185m_so_header
+lock master
+authorization master ( instance )
+//etag master <field_name>
+early numbering
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) Soid;
+  mapping for y185m_so_header
+  {
+  SoId = soid;
+  OrderDate = order_date;
+  Customer = customer;
+  Currency = currency;
+  CreatdBy = creatd_by;
+  TotalAmount = total_amount;
+  Status      = status;
+
+  }
+  association _Item { create; }
+  validation Validatecustomer on save { create; field customer; }
+}
+
+define behavior for y185_I_So_Item
+persistent table y185m_so_item
+lock dependent by _Header
+authorization dependent by _Header
+early numbering
+{
+  update;
+  delete;
+
+  field ( readonly ) SoId, ItemId, TotalPrice;
+
+
+  determination calculateTotalPrice on modify { field Quantity, NetPrice; }
+
+  determination calculateHeaderTotal on modify { field TotalPrice; create; delete; }
+
+  factory action copyItem [1];
+
+  mapping for y185m_so_item
+  {
+    SoId       = so_id;
+    ItemId     = item_id;
+    Material   = material;
+    Quantity   = quantity;
+    NetPrice   = net_price;
+    TotalPrice = total_price;
+  }
+
+  association _Header;
+}

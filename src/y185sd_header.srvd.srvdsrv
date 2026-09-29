@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Defination Of Header table'
+define service Y185SD_header {
+  expose Y185C_SO_HEADER as Header;
+  expose Y185C_SO_ITEM   as Item;
+}

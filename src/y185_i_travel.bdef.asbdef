@@ -1,0 +1,27 @@
+unmanaged implementation in class zbp_185_i_travel unique;
+strict ( 2 );
+
+define behavior for y185_I_Travel alias Travel
+
+lock master
+//early numbering
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+//  field ( readonly ) TravelId;
+
+  mapping for y185m_travel
+  {
+  TravelId = travel_id;
+  EmployeeId = employee_id;
+  Destination = destination;
+  StartDate = start_date;
+  EndDate = end_date;
+  Status = status;
+
+
+  }
+}

@@ -1,0 +1,9 @@
+projection;
+strict ( 2 );
+
+define behavior for y185C_Travel alias Travel
+{
+  use create;
+  use update;
+  use delete;
+}

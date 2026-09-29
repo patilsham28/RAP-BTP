@@ -1,0 +1,97 @@
+@Metadata.layer: #CORE
+
+@UI: {
+  headerInfo: {
+    typeName: 'Sales Header',
+    typeNamePlural: 'Sales Headers',
+    title: { type: #STANDARD, value: 'Customer' },
+    description: { type: #STANDARD, value: 'SoId' }
+  }
+}
+annotate entity Y185C_SO_HEADER
+with
+{
+  @UI.facet: [
+    /* =========================================================
+       TABS (Body Facets)
+       ========================================================= */
+    {
+      id: 'HeaderInfoTab',
+      purpose: #STANDARD,
+      type: #COLLECTION,
+      position: 10,
+      label: 'Sales Header Info'
+    },
+    {
+      id: 'BasicInfoCol',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      parentId: 'HeaderInfoTab',
+      targetQualifier: 'BasicGroup',
+      position: 10
+    },
+    {
+      id: 'AdminInfoCol',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      parentId: 'HeaderInfoTab',
+      targetQualifier: 'AdminGroup',
+      position: 20
+    },
+    {
+      id: 'ItemsTab',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      targetElement: '_Item',
+      position: 30,
+      label: 'Order Items'
+    }
+  ]
+
+  @EndUserText.label: 'So Number'
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.fieldGroup: [{ qualifier: 'BasicGroup', position: 10 }]
+  Soid;
+
+  @EndUserText.label: 'Customer'
+  @UI.lineItem: [{ position: 20 }]
+  @UI.identification: [{ position: 20 }]
+  @UI.selectionField: [{ position: 20 }]
+  @UI.fieldGroup: [{ qualifier: 'BasicGroup', position: 20 }]
+  Customer;
+
+  @EndUserText.label: 'Order Date'
+  @UI.lineItem: [{ position: 30 }]
+  @UI.identification: [{ position: 30 }]
+  @UI.fieldGroup: [{ qualifier: 'BasicGroup', position: 30 }]
+  OrderDate;
+  
+  @EndUserText.label: 'Total Amount'
+  @UI.lineItem: [{ position: 40 }]         
+  @UI.identification: [{ position: 40 }]
+  @UI.fieldGroup: [{ qualifier: 'AdminGroup', position: 30 }]
+  TotalAmount;
+
+  @EndUserText.label: 'Currency'
+  @UI.lineItem: [{ position: 45 }]
+  @UI.identification: [{ position: 45 }]
+  @UI.fieldGroup: [{ qualifier: 'AdminGroup', position: 10 }]
+  @Consumption.valueHelpDefinition: [{ 
+          entity: { name: 'I_Currency', element: 'Currency' } 
+      }]
+  Currency;
+  
+  @EndUserText.label: 'Status'
+  @UI.lineItem: [{ position: 50, criticality: 'StatusCriticality' }]
+  @UI.identification: [{ position: 50, criticality: 'StatusCriticality' }]
+  @UI.fieldGroup: [{ qualifier: 'BasicGroup', position: 40, criticality: 'StatusCriticality' }]
+  Status; 
+
+  @EndUserText.label: 'Created By'
+  @UI.lineItem: [{ position: 60 }]
+  @UI.identification: [{ position: 60 }]
+  @UI.fieldGroup: [{ qualifier: 'AdminGroup', position: 20 }]
+  CreatdBy;
+}

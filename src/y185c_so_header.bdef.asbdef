@@ -1,0 +1,21 @@
+projection;
+strict ( 2 );
+
+define behavior for Y185C_SO_HEADER alias Header
+{
+  use create;
+  use update;
+  use delete;
+
+use association _Item { create; }
+}
+
+define behavior for Y185C_SO_ITEM alias Item
+{
+ use update;
+ use delete;
+
+ use association _Header;
+ use action copyItem;
+
+}
