@@ -306,29 +306,6 @@ Save Sales Order
 Consume through OData / Fiori Elements
 ```
 
-## 📸 Screenshots
-
-Screenshots of the working application can be added below.
-
-### Sales Order List Report
-
-_Add screenshot here._
-
-### Sales Order Object Page
-
-_Add screenshot here._
-
-### Header and Item Details
-
-_Add screenshot here._
-
-### Copy Item Action
-
-_Add screenshot here._
-
-### Customer Validation
-
-_Add screenshot here._
 
 ## 🎯 Key Learning Outcomes
 
